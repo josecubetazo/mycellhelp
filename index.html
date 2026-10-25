@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MyCellHelp – Your phone, made simple</title>
+<meta name="description" content="Friendly, step-by-step help for any phone problem. English and Spanish. iPhone and Android.">
+<style>
+:root{--blue:#1f6feb;--navy:#0b2a5b;--soft:#eef5ff;--ink:#14213d;--green:#1a9c4b;--gold:#f5a623}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:#fff;font-size:18px;line-height:1.5}
+img{max-width:100%;height:auto;display:block}
+.wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+/* language switch: show only chosen language */
+body[data-lang="en"] [lang="es"]{display:none}
+body[data-lang="es"] [lang="en"]{display:none}
+header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e3ebf7;z-index:5}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.brand{font-weight:800;font-size:22px;color:var(--navy);text-decoration:none}
+.brand b{color:var(--blue)}
+.lang{display:flex;border:2px solid var(--blue);border-radius:999px;overflow:hidden}
+.lang button{border:0;background:#fff;color:var(--blue);font-size:16px;font-weight:700;padding:8px 16px;cursor:pointer}
+.lang button.on{background:var(--blue);color:#fff}
+.hero{background:linear-gradient(180deg,var(--soft),#fff);padding:28px 0 8px}
+.hero-grid{display:grid;gap:22px;align-items:center}
+h1{font-size:clamp(34px,7vw,56px);line-height:1.1;margin:0 0 12px;color:var(--navy)}
+.sub{font-size:clamp(18px,3.4vw,22px);margin:0 0 20px;color:#35466b}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;border:0;border-radius:999px;font-size:20px;font-weight:700;padding:16px 26px;cursor:pointer;text-decoration:none}
+.btn.mic{background:var(--blue);color:#fff;box-shadow:0 6px 18px rgba(31,111,235,.35)}
+.btn.alt{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+.note{display:none;margin-top:16px;background:#fff8e6;border:2px solid var(--gold);border-radius:14px;padding:14px 16px;font-size:18px}
+.note.show{display:block}
+.rounded{border-radius:20px;box-shadow:0 10px 30px rgba(11,42,91,.15)}
+section{padding:36px 0}
+h2{font-size:clamp(26px,5vw,36px);color:var(--navy);margin:0 0 8px}
+.lead{margin:0 0 22px;color:#35466b}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card{background:#fff;border:2px solid #dbe7fb;border-radius:16px;padding:14px 8px;text-align:center;font-weight:700;font-size:17px;color:var(--navy);cursor:pointer;font-family:inherit;line-height:1.25}
+.card:hover,.card:focus{border-color:var(--blue);background:var(--soft);outline:none}
+.card span.i{display:block;font-size:34px;margin-bottom:4px}
+.steps{display:grid;gap:18px;align-items:center}
+.how{display:grid;gap:14px;margin:0;padding:0;list-style:none}
+.how li{display:flex;gap:14px;align-items:flex-start;background:var(--soft);border-radius:16px;padding:14px 16px}
+.how .n{background:var(--blue);color:#fff;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex:none}
+.two{display:grid;gap:18px}
+.trust{display:grid;gap:12px;grid-template-columns:1fr 1fr}.trust div{background:var(--soft);border-radius:16px;padding:14px}.trust b{display:block;color:var(--navy)}.trust small{display:block;color:#35466b;font-size:15px;line-height:1.3;margin-top:2px}
+footer{background:var(--navy);color:#dbe7fb;padding:28px 0;text-align:center;font-size:16px}
+@media(min-width:700px){
+ .hero-grid{grid-template-columns:1fr 1fr}
+ .cards{grid-template-columns:repeat(5,1fr)}
+ .steps{grid-template-columns:1fr 1fr}
+ .two{grid-template-columns:1fr 1fr}.trust{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body data-lang="en">
+
+<header>
+ <div class="wrap bar">
+  <a class="brand" href="#top">My<b>Cell</b>Help</a>
+  <div class="lang" role="group" aria-label="Language">
+   <button id="bEN" class="on" type="button">EN</button>
+   <button id="bES" type="button">ES</button>
+  </div>
+ </div>
+</header>
+
+<main id="top">
+<div class="hero">
+ <div class="wrap hero-grid">
+  <div>
+   <h1><span lang="en">Your phone, made simple.</span><span lang="es">Tu teléfono, hecho fácil.</span></h1>
+   <p class="sub"><span lang="en">Tell us what's wrong. We'll walk you through the fix, one easy step at a time.</span><span lang="es">Dinos qué pasa. Te guiamos con la solución, un paso fácil a la vez.</span></p>
+   <div class="cta">
+    <button class="btn mic" type="button" data-ask>🎤 <span lang="en">Tap to talk</span><span lang="es">Toca para hablar</span></button>
+    <button class="btn alt" type="button" data-ask><span lang="en">Ask for help</span><span lang="es">Pedir ayuda</span></button>
+   </div>
+   <div class="note" id="note" role="status">
+    <span lang="en"><b>We're almost ready!</b> The talking helper is launching very soon. Check back shortly.</span>
+    <span lang="es"><b>¡Ya casi!</b> El ayudante por voz llegará muy pronto. Vuelve a visitarnos en breve.</span>
+   </div>
+  </div>
+  <img class="rounded" src="img/hero.jpg" alt="A smiling woman holding her phone, relieved" width="1096" height="359">
+ </div>
+</div>
+
+<section>
+ <div class="wrap">
+  <h2><span lang="en">What do you need help with?</span><span lang="es">¿En qué necesitas ayuda?</span></h2>
+  <p class="lead"><span lang="en">Tap the one that sounds like your problem.</span><span lang="es">Toca el que se parezca a tu problema.</span></p>
+  <div class="cards" id="cards"></div>
+ </div>
+</section>
+
+<section style="background:var(--soft)">
+ <div class="wrap steps">
+  <div>
+   <h2><span lang="en">How it works</span><span lang="es">Cómo funciona</span></h2>
+   <ol class="how">
+    <li><div class="n">1</div><div><span lang="en"><b>Say or tap your problem.</b> Use the microphone or type.</span><span lang="es"><b>Di o toca tu problema.</b> Usa el micrófono o escribe.</span></div></li>
+    <li><div class="n">2</div><div><span lang="en"><b>One step at a time.</b> Simple words, no confusing tech talk.</span><span lang="es"><b>Un paso a la vez.</b> Palabras sencillas, sin términos confusos.</span></div></li>
+    <li><div class="n">3</div><div><span lang="en"><b>Did it work?</b> Tap Yes, No, or Help me.</span><span lang="es"><b>¿Funcionó?</b> Toca Sí, No o Ayúdame.</span></div></li>
+   </ol>
+  </div>
+  <div class="two">
+   <img class="rounded" src="img/phone-chat.jpg" alt="Phone showing a friendly help chat with a microphone button" width="411" height="425">
+   <img class="rounded" src="img/phone-steps.jpg" alt="Phone showing one step with Yes, No and Help me buttons" width="411" height="568">
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap steps">
+  <img class="rounded" src="img/family.jpg" alt="A grandfather and grandson smiling at a phone together" width="626" height="493">
+  <div>
+   <h2><span lang="en">Help for the whole family</span><span lang="es">Ayuda para toda la familia</span></h2>
+   <p class="lead"><span lang="en">Whether you're 8 or 80, you can ask in your own words. No judgment, no rush.</span><span lang="es">Tengas 8 o 80 años, puedes preguntar con tus propias palabras. Sin juicios y sin prisa.</span></p>
+  </div>
+ </div>
+</section>
+
+<section style="padding-top:0">
+ <div class="wrap">
+  <div class="trust">
+   <div>🔒 <b><span lang="en">Private</span><span lang="es">Privado</span></b><small><span lang="en">Your information stays private.</span><span lang="es">Tu información es privada.</span></small></div>
+   <div>🎁 <b><span lang="en">Free to try</span><span lang="es">Gratis para probar</span></b><small><span lang="en">No credit card needed.</span><span lang="es">Sin tarjeta de crédito.</span></small></div>
+   <div>💬 <b>English / Español</b><small><span lang="en">Help in the language you prefer.</span><span lang="es">Ayuda en el idioma que prefieras.</span></small></div>
+   <div>📱 <b>iPhone + Android</b><small><span lang="en">We help with both phones.</span><span lang="es">Ayudamos con ambos teléfonos.</span></small></div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div>© <span id="yr">2026</span> MyCellHelp</div>
+  <div style="margin-top:6px"><span lang="en">Never share your passwords or PIN with anyone.</span><span lang="es">Nunca compartas tus contraseñas ni tu PIN con nadie.</span></div>
+ </div>
+</footer>
+
+<script>
+(function(){
+ var topics=[
+  ["💾","Storage full","Almacenamiento lleno"],["🔑","Passwords","Contraseñas"],["🔢","Forgot passcode","Olvidé mi código"],["🔋","Battery drains","La batería se acaba"],["📶","Wi-Fi","Wi-Fi"],
+  ["🎧","Bluetooth","Bluetooth"],["☁️","Backup","Respaldo"],["📱","New phone","Teléfono nuevo"],["🐢","Slow phone","Teléfono lento"],["📞","Spam calls","Llamadas spam"],
+  ["🚫","Block number","Bloquear número"],["⬆️","Update","Actualizar"],["🖼️","Duplicate photos","Fotos duplicadas"],["✉️","Email","Correo"],["💬","Texts","Mensajes"],
+  ["🔨","Cracked screen","Pantalla rota"],["🔍","Lost phone","Teléfono perdido"],["📼","Voicemail","Buzón de voz"],["🛡️","Two-step verification","Verificación en 2 pasos"],["⚠️","Scam warning","Alerta de estafa"],
+  ["🔠","Bigger text","Texto más grande"],["🔗","Share photos","Compartir fotos"],["📺","TV mirroring","Pantalla en TV"],["📲","App crashing","App se cierra"],["📊","Data usage","Uso de datos"]
+ ];
+ var box=document.getElementById('cards');
+ topics.forEach(function(t){
+  var b=document.createElement('button');b.type='button';b.className='card';b.setAttribute('data-ask','');
+  b.innerHTML='<span class="i">'+t[0]+'</span><span lang="en">'+t[1]+'</span><span lang="es">'+t[2]+'</span>';
+  box.appendChild(b);
+ });
+ var note=document.getElementById('note');
+ document.addEventListener('click',function(e){
+  if(e.target.closest('[data-ask]')){note.classList.add('show');note.scrollIntoView({behavior:'smooth',block:'center'});}
+ });
+ function setLang(l){
+  document.body.setAttribute('data-lang',l);document.documentElement.lang=l;
+  document.getElementById('bEN').classList.toggle('on',l==='en');
+  document.getElementById('bES').classList.toggle('on',l==='es');
+  try{localStorage.setItem('mch-lang',l)}catch(e){}
+ }
+ document.getElementById('bEN').onclick=function(){setLang('en')};
+ document.getElementById('bES').onclick=function(){setLang('es')};
+ var s;try{s=localStorage.getItem('mch-lang')}catch(e){}
+ if(!s&&(navigator.language||'').toLowerCase().indexOf('es')===0)s='es';
+ if(s)setLang(s);
+ document.getElementById('yr').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
